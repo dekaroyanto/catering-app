@@ -15,7 +15,7 @@ use App\Http\Controllers\DashboardController;
 //     return view('register');
 // })->name('register');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login_proses', [LoginController::class, 'login_proses'])->name('login_proses');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -40,7 +40,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/store/{menu}', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/remove/{menuId}', [CartController::class, 'remove'])->name('cart.remove');
 
+    Route::get('merchants/{merchant}/orders', [MerchantController::class, 'showOrders'])->name('merchant.orders.index');
+
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
 
 
     Route::get('/invoice/print', [CartController::class, 'printInvoice'])->name('invoice.print');

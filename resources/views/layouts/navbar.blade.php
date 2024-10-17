@@ -37,13 +37,14 @@
                             <span>Menu {{ $merchant->nama_merchant }}</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('merchant.orders.index', $merchant->id) }}" class="sidebar-link">
+                            <i class="lni lni-cart"></i>
+                            <span>Pesanan</span>
+                        </a>
+                    </li>
                 @endforeach
-                <li class="sidebar-item">
-                    <a href="{{ route('orders.index') }}" class="sidebar-link">
-                        <i class="lni lni-cart"></i>
-                        <span>Pesanan</span>
-                    </a>
-                </li>
+
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#multi" aria-expanded="false" aria-controls="multi">

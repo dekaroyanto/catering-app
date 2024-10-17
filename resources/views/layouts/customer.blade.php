@@ -48,6 +48,16 @@
             });
         </script>
     @endif
+
+    @if ($message = Session::get('checkout'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ $message }}',
+            });
+        </script>
+    @endif
 </body>
 
 </html>

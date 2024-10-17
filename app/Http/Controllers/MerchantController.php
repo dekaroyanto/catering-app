@@ -95,9 +95,16 @@ class MerchantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Merchant $merchant)
+    public function showOrders(Merchant $merchant)
     {
-        //
+        if ($merchant->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized access');
+        }
+
+        // Ambil semua pesanan terkait menu dari merchant ini
+        $orders = $merchant->menus()->with('orders.user')->get()->flatMap->orders;
+
+        return view('admin.menu.order', compact('merchant', 'orders'));
     }
 
     /**

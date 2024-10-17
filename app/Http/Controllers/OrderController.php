@@ -13,12 +13,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Ambil pesanan untuk seller yang sedang login
         $orders = Order::with('menu')->whereHas('menu', function ($query) {
             $query->where('merchant_id', Auth::id());
         })->get();
 
-        return view('admin.menu.order', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     /**

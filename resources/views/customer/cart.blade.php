@@ -38,6 +38,12 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-end">
+            <form action="{{ route('checkout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-success">Checkout</button>
+            </form>
+        </div>
 
         <div class="text-end">
             <a href="{{ route('invoice.print') }}" class="btn btn-primary">Cetak Invoice</a>

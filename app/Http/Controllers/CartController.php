@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -67,5 +69,23 @@ class CartController extends Controller
 
         // Kembalikan tampilan invoice
         return view('customer.invoice', compact('cart', 'total'));
+    }
+
+    public function checkout()
+    {
+        $cart = Session::get('cart', []);
+        $userId = Auth::id();
+
+        foreach ($cart as $menuId => $item) {
+            Order::create([
+                'menu_id' => $menuId,
+                'user_id' => $userId,
+                'quantity' => $item['quantity'],
+            ]);
+        }
+
+        Session::forget('cart');
+
+        return redirect()->route('cart.index')->with('checkout', 'Pesanan berhasil dibuat!');
     }
 }
