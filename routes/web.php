@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\DashboardController;
@@ -38,6 +39,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/store/{menu}', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/remove/{menuId}', [CartController::class, 'remove'])->name('cart.remove');
+
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
 
     Route::get('/invoice/print', [CartController::class, 'printInvoice'])->name('invoice.print');

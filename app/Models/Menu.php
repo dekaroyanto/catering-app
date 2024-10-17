@@ -12,4 +12,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Merchant::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

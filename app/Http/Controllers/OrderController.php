@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -12,7 +13,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        // Ambil pesanan untuk seller yang sedang login
+        $orders = Order::with('menu')->whereHas('menu', function ($query) {
+            $query->where('merchant_id', Auth::id());
+        })->get();
+
+        return view('admin.menu.order', compact('orders'));
     }
 
     /**
