@@ -14,11 +14,9 @@ Name : Deka Royanto
 Email : dekaroy05@gmail.com
 ```
 
-## 🤖 How to install 🤖
+## ❗ Important ❗
 ```bash
-➡️ Clone this repo
-➡️ Run command "composer install"
-➡️ Config database in .env
-➡️ Run command "php artisan migrate"
-➡️ Run command "php artisan db:seed"
+Run command "php artisan db:seed" before run the aplication
 ```
+
+
