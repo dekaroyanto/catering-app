@@ -62,6 +62,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: 'info',
+            title: 'Info',
+            text: 'Pastikan telah menjalankan "php artisan db:seed"',
+        })
+    </script>
 
     @if ($message = Session::get('error'))
         <script>
