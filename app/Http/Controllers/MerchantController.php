@@ -92,6 +92,40 @@ class MerchantController extends Controller
         return redirect()->route('merchant.menus.index', $merchantId)->with('success', 'Menu berhasil ditambahkan');
     }
 
+    public function editMenu($menuId)
+    {
+        $menu = Menu::findOrFail($menuId);
+        $merchant = $menu->merchant;
+
+        return view('admin.menu.edit', compact('menu', 'merchant'));
+    }
+
+
+    public function updateMenu(Request $request, $menuId)
+    {
+        $menu = Menu::findOrFail($menuId);
+
+        $request->validate([
+            'nama_menu' => 'required|string|max:255',
+            'harga' => 'required|numeric',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $menu->nama_menu = $request->nama_menu;
+        $menu->harga = $request->harga;
+
+        if ($request->hasFile('foto')) {
+
+            $path = $request->file('foto')->store('menu_images', 'public');
+            $menu->foto = $path;
+        }
+
+        $menu->save();
+
+        return redirect()->route('merchant.menus.index', $menu->merchant_id)
+            ->with('editmenu', 'Data berhasil diubah');
+    }
+
     /**
      * Display the specified resource.
      */

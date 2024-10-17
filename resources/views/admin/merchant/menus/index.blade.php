@@ -13,6 +13,7 @@
                         <th>Nama Menu</th>
                         <th>Harga</th>
                         <th>Foto</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,8 @@
                             <td>{{ $menu->harga }}</td>
                             <td><img src="{{ asset('storage/' . $menu->foto) }}" alt="{{ $menu->nama_menu }}" width="100">
                             </td>
+                            <td>
+                                <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             </td>
                         </tr>
                     @endforeach

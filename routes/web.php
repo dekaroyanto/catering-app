@@ -34,6 +34,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('merchants/{merchant}/menus/create', [MerchantController::class, 'createMenu'])->name('merchant.menus.create');
     Route::post('merchants/{merchant}/menus', [MerchantController::class, 'storeMenu'])->name('merchant.menus.store');
     Route::get('merchants/{merchant}/menus', [MerchantController::class, 'showMenus'])->name('merchant.menus.index');
+    Route::get('menus/{menu}/edit', [MerchantController::class, 'editMenu'])->name('menus.edit');
+    Route::put('menus/{menu}', [MerchantController::class, 'updateMenu'])->name('menus.update');
 
     Route::get('home', [CustomerController::class, 'home'])->name('home');
     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
