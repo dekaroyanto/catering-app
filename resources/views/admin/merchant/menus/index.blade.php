@@ -3,10 +3,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>Menus for {{ $merchant->nama_merchant }}</h1>
+            <h1>Menus toko {{ $merchant->nama_merchant }}</h1>
             <a href="{{ route('merchant.menus.create', $merchant->id) }}" class="btn btn-primary">Tambah Menu</a>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="max-height: 400px; overflow-y: auto;">
             <table class="table">
                 <thead>
                     <tr>
