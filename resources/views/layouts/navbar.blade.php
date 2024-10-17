@@ -63,7 +63,7 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if ($message = Session::get('editmenu'))
+    @if ($message = Session::get('success'))
         <script>
             Swal.fire({
                 icon: 'success',
@@ -73,6 +73,43 @@
         </script>
     @endif
 
+    <script>
+        function confirmDelete(merchantId) {
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini tidak bisa dikembalikan setelah dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + merchantId).submit();
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function confirmDelete(menuId) {
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini tidak bisa dikembalikan setelah dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + menuId).submit();
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

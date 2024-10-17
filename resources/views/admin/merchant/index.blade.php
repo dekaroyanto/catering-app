@@ -25,11 +25,18 @@
                             <td>{{ $merchant->kontak_merchant }}</td>
                             <td>{{ $merchant->alamat_merchant }}</td>
                             <td>
-                                <form action="" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                <div class="d-inline">
+                                    <a href="{{ route('merchant.edit', $merchant->id) }}"
+                                        class="btn btn-warning btn-sm">Edit</a>
+                                    <form id="delete-form-{{ $merchant->id }}"
+                                        action="{{ route('merchant.destroy', $merchant->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            onclick="confirmDelete({{ $merchant->id }})">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

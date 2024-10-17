@@ -123,7 +123,15 @@ class MerchantController extends Controller
         $menu->save();
 
         return redirect()->route('merchant.menus.index', $menu->merchant_id)
-            ->with('editmenu', 'Data berhasil diubah');
+            ->with('success', 'Data berhasil diubah');
+    }
+
+    public function destroymenu($id)
+    {
+        $menu = Menu::findOrFail($id);
+        $menu->delete();
+
+        return redirect()->route('merchant.menus.index', $menu->merchant_id)->with('success', 'Menu berhasil dihapus');
     }
 
     /**
@@ -144,25 +152,35 @@ class MerchantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $merchant = Merchant::find($id);
+        $merchant = Merchant::findOrFail($id);
+
         return view('admin.merchant.edit', compact('merchant'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Merchant $merchant)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_merchant' => 'required',
+            'kontak_merchant' => 'required',
+            'alamat_merchant' => 'required',
+        ]);
+
+        $merchant = Merchant::findOrFail($id);
+        $merchant->update($request->all());
+
+        return redirect()->route('merchant.index')->with('success', 'Merchant berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Merchant $merchant)
+    public function destroy($id)
     {
-        //
+        $merchant = Merchant::findOrFail($id);
+        $merchant->delete();
+
+        return redirect()->route('merchant.index')->with('success', 'Merchant berhasil dihapus');
     }
 }

@@ -24,7 +24,19 @@
                             <td><img src="{{ asset('storage/' . $menu->foto) }}" alt="{{ $menu->nama_menu }}" width="100">
                             </td>
                             <td>
-                                <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <div class="d-inline">
+                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                                    <form id="delete-form-{{ $menu->id }}"
+                                        action="{{ route('menus.destroy', $menu->id) }}" method="POST"
+                                        class="delete-form d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm btn-delete"
+                                            onclick="confirmDelete({{ $menu->id }})">Hapus</button>
+                                    </form>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach

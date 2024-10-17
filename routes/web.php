@@ -36,13 +36,21 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('merchants/{merchant}/menus', [MerchantController::class, 'showMenus'])->name('merchant.menus.index');
     Route::get('menus/{menu}/edit', [MerchantController::class, 'editMenu'])->name('menus.edit');
     Route::put('menus/{menu}', [MerchantController::class, 'updateMenu'])->name('menus.update');
+    Route::delete('menus/{menu}', [MerchantController::class, 'destroymenu'])->name('menus.destroy');
 
+
+    Route::delete('/cart/remove/{menuId}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/store/{menu}', [CartController::class, 'store'])->name('cart.store');
     Route::get('home', [CustomerController::class, 'home'])->name('home');
     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/store/{menu}', [CartController::class, 'store'])->name('cart.store');
-    Route::delete('/cart/remove/{menuId}', [CartController::class, 'remove'])->name('cart.remove');
+
 
     Route::get('merchants/{merchant}/orders', [MerchantController::class, 'showOrders'])->name('merchant.orders.index');
+    Route::delete('/merchant/{id}', [MerchantController::class, 'destroy'])->name('merchant.destroy');
+    Route::get('/merchant/{id}/edit', [MerchantController::class, 'edit'])->name('merchant.edit');
+    Route::put('/merchant/{id}', [MerchantController::class, 'update'])->name('merchant.update');
+
+
 
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');

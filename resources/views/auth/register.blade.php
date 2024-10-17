@@ -23,29 +23,32 @@
                         <h1>Register</h1>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="form3Example3">Nama Lengkap</label>
-                            <input type="text" class="form-control form-control-lg"
+                            <input type="text"
+                                class="form-control form-control-lg @error('name') is-invalid @enderror"
                                 placeholder="Masukan nama lengkap" name="name" />
+                            @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
-                        @error('name')
-                            <small>{{ $message }}</small>
-                        @enderror
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="form3Example3">Email</label>
-                            <input type="email" class="form-control form-control-lg" placeholder="Masukan Email"
-                                name="email" />
+                            <input type="email"
+                                class="form-control form-control-lg  @error('email') is-invalid @enderror"
+                                placeholder="Masukan Email" name="email" />
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
-                        @error('email')
-                            <small>{{ $message }}</small>
-                        @enderror
 
                         <div data-mdb-input-init class="form-outline mb-3">
                             <label class="form-label">Password</label>
-                            <input type="password" id="form3Example4" class="form-control form-control-lg"
+                            <input type="password" id="form3Example4"
+                                class="form-control form-control-lg  @error('password') is-invalid @enderror"
                                 placeholder="Masukan password" name="password" />
+                            @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
-                        @error('password')
-                            <small>{{ $message }}</small>
-                        @enderror
 
                         <div data-mdb-input-init class="form-outline mb-3">
                             <label class="form-label">Role</label>

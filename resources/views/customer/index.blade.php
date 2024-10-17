@@ -26,7 +26,6 @@
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <a class="btn btn-outline-dark mt-auto" href="#">View options</a>
                                         <form action="{{ route('cart.store', $menu->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             <button type="submit" class="btn btn-success mt-2">Pesan</button>

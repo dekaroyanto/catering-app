@@ -59,11 +59,12 @@ class LoginController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ], [
             'name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah terdaftar',
             'password.required' => 'Password harus diisi',
         ]);
 
